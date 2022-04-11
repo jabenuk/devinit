@@ -161,7 +161,7 @@ int parseargs(int *_argc, char *_argv[]) {
 	while (1) {
 		int index = 0;
 		
-		c = getopt_long(*_argc, _argv, "p:l:o:qSh", LONG_OPTIONS, &index);
+		c = getopt_long(*_argc, _argv, "p:l:o:qShV", LONG_OPTIONS, &index);
 		if (c == -1) {
 			break;
 		}
