@@ -36,7 +36,8 @@ void prhelp() {
 			"  -q, --quiet		Print less output.\n"
 			"  -S, --silent		Print no output.\n"
 			"  -h, --help		Show this help dialogue.\n"
-			"  --version		Give information about the command, such as version.\n"
+			"  -V, --version		Give information about the command, such as version.\n"
+			"  --force		Delete any previous directories of the same name as the project WITHOUT prompts!\n"
 			"\n"
 			"Suported languages for the (-l | --language) flag:\n"
 			"  - 'c': C projects\n"
@@ -49,5 +50,5 @@ void prhelp() {
  * 
  */
 void prvers() {
-	printf("devinit version %s: see Git repo at https://github.com/jabenuk/devinit. \n", VERSION);
+	printf("devinit version %s\n", VERSION);
 }

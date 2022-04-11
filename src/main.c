@@ -32,16 +32,18 @@ static const struct option LONG_OPTIONS[] = {
 
 	{ "quiet",		no_argument,		0, 'q' },
 	{ "silent",		no_argument,		0, 'S' },
+	{ "force",		no_argument,		0, 'f' },
 
 	{ "help", 		no_argument,	 	0, 'h' },
 	{ "version", 	no_argument,	 	0, 'V' },
 	{ 0, 			0, 					0,  0  }
 };
 
-char *PROJECT_NAME = "";
-char *PROJECT_LANGUAGE = "";
+static char *PROJECT_NAME = "";
+static char *PROJECT_LANGUAGE = "";
 static char *OUTPUT_DIR = "";
 static unsigned char SUPPRESSLVL = 0;		// 0: all output | 1: quiet output (-q) | 2: no output (-S)
+static unsigned char FORCERM = 0;
 
 /**
  * @brief parse command-line arguments via getopt
@@ -71,22 +73,58 @@ int main(int argc, char *argv[]) {
 
 	// assert that there is no existing folder by the name of OUTPUT_DIR.
 	if (direxists(OUTPUT_DIR)) {
-		printf("devinit: directory '%s' already exists.\n", OUTPUT_DIR);
-		return 1;
+		char _rmcommand[100] = "rm -rf \"";
+		strcat(_rmcommand, OUTPUT_DIR);
+		strcat(_rmcommand, "\"");
+
+		// if force is not specified, prompt the user before deleting the directory
+		if (!FORCERM) {
+			// there is no need for this warning to be displayed if FORCERM is true.
+			printf("devinit: directory '%s' already exists.\n", OUTPUT_DIR);
+
+			char inp[16];
+
+			printf("Delete directory '%s'? [y/n] ", OUTPUT_DIR);
+			scanf("%s", &inp);
+
+			convupper(inp);
+
+			// if the user did not give a valid input:
+			if (strcmp(inp, "Y") != 0 && strcmp(inp, "N") != 0) {
+				printf("devinit: invalid input.\n");
+				return 1;
+			}
+
+			// if the user said no:
+			if (!strcmp(inp, "N")) {
+				return 0;
+			}
+			
+			// if the user said yes:
+			printf("  => Deleting...\n");
+			system(_rmcommand);
+		}
+		// if --force is specified, do it automatically
+		else {
+			__vprintf(2, "  => --force specified, deleting directory '%s'...\n", OUTPUT_DIR);
+			system(_rmcommand);
+		}
 	}
+
+	// create project folder
+	__vprintf(2, "  => Creating %s project '%s'\n", PROJECT_LANGUAGE, PROJECT_NAME);
+	mkdir(OUTPUT_DIR, S_IRWXU);
 
 	// download the appropriate template as a ZIP from GitHub.
 	// unfortunately PROJECT_LANGUAGE is not integral; otherwise I would have used a switch-case statement.
+	__vprintf(2, "  => Downloading project template from GitHub...\n", 0);
+
 	if (!strcmp(PROJECT_LANGUAGE, "C")) {
 		system("wget https://github.com/jabenuk/devinit/archive/template_c.zip -O .devinit.template.zip 2>/dev/null");
 	}
 	if (!strcmp(PROJECT_LANGUAGE, "CXX")) {
 		system("wget https://github.com/jabenuk/devinit/archive/template_cxx.zip -O .devinit.template.zip 2>/dev/null");
 	}
-
-	// create project folder
-	__vprintf(2, "  => Creating %s project '%s'\n", PROJECT_LANGUAGE, PROJECT_NAME);
-	mkdir(OUTPUT_DIR, S_IRWXU);
 	
 	// extract the zip into the project folder
 	{
@@ -139,6 +177,7 @@ int main(int argc, char *argv[]) {
 		system("rm -rf devinit-template_cxx/");
 	}
 
+	__vprintf(2, "  => Done!\n", 0);
 	return 0;
 }
 
@@ -183,6 +222,9 @@ int parseargs(int *_argc, char *_argv[]) {
 				break;
 			case 'S': 	// -S or --silent
 				SUPPRESSLVL = 2;
+				break;
+			case 'f':	// -f or --force
+				FORCERM = 1;
 				break;
 
 			case 'h':	// -h or --help
