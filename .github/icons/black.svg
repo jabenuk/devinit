@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="92.079643mm"
+   width="125.99627mm"
    height="21.754961mm"
-   viewBox="0 0 92.079644 21.754961"
+   viewBox="0 0 125.99627 21.754961"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.2 (0a00cf5, 2022-02-04)"
@@ -27,9 +27,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="2.0500001"
-     inkscape:cx="133.41463"
-     inkscape:cy="63.414632"
+     inkscape:zoom="1.449569"
+     inkscape:cx="164.53167"
+     inkscape:cy="77.954207"
      inkscape:window-width="1920"
      inkscape:window-height="1045"
      inkscape:window-x="1920"
@@ -38,6 +38,23 @@
      inkscape:current-layer="layer1" />
   <defs
      id="defs2">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect14329"
+       is_visible="true"
+       lpeversion="1"
+       satellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,2.0971802,0,1"
+       unit="px"
+       method="auto"
+       mode="F"
+       radius="0"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect15177"
@@ -106,46 +123,75 @@
        apply_with_radius="true"
        only_selected="false"
        hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect14329-9"
+       is_visible="true"
+       lpeversion="1"
+       satellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,2.0971802,0,1"
+       unit="px"
+       method="auto"
+       mode="F"
+       radius="0"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
   </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-47.717937,-134.96585)"
+     transform="translate(-13.801304,-134.96585)"
      style="display:inline">
     <g
        id="g15400"
        transform="matrix(2.7335024,0,0,2.7335024,-162.52932,-252.81979)"
-       style="fill:#000000;fill-opacity:1">
+       style="fill:#ffffff;fill-opacity:1">
       <path
          d="m 78.59894,149.82266 c 0.709082,0 1.285003,-0.26458 1.821865,-0.8255 l -0.17272,0.58208 h 1.481662 l 2.289373,-7.71522 h -0.705589 a 1.0398046,1.0398046 0 0 0 -0.996845,0.74401 l -0.592593,1.99706 c -0.20084,-0.5715 -0.619732,-0.83608 -1.328814,-0.83608 -1.365245,0 -2.791828,1.31233 -3.303732,3.03741 -0.496188,1.67216 0.06807,3.01624 1.507393,3.01624 z m 1.756984,-4.8154 c 0.751414,0 1.03213,0.73024 0.708671,1.82032 -0.307748,1.03717 -1.02932,1.75683 -1.770151,1.75683 -0.740831,0 -1.032131,-0.73025 -0.721235,-1.77799 0.314038,-1.05833 1.041884,-1.79916 1.782715,-1.79916 z"
-         style="font-weight:600;font-size:10.5833px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans Semi-Bold';fill:#000000;fill-opacity:1;stroke-width:0.264583"
+         style="font-weight:600;font-size:10.5833px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans Semi-Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
          id="path12785"
          sodipodi:nodetypes="sccccccssssssss" />
       <path
          d="m 86.68174,143.76901 c -1.640411,0 -2.997555,1.18533 -3.565984,3.10091 -0.543306,1.83091 0.11865,2.95274 1.737895,2.95274 1.280579,0 2.534425,-0.73025 3.195401,-1.85208 h -1.460495 c -0.314964,0.45508 -0.806219,0.71966 -1.345967,0.71966 -0.99483,0 -0.936881,-0.73024 -0.739386,-1.50282 h 3.831155 c 0.04832,-0.127 0.06396,-0.17992 0.08589,-0.254 0.750565,-2.52941 -0.595584,-3.16441 -1.73858,-3.16441 z m 0.4101,2.43416 h -2.275409 c 0.352766,-0.86783 0.851939,-1.30175 1.508103,-1.30175 0.687915,0 0.951904,0.46567 0.767306,1.30175 z"
-         style="font-weight:600;font-size:10.5833px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans Semi-Bold';fill:#000000;fill-opacity:1;stroke-width:0.264583"
+         style="font-weight:600;font-size:10.5833px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans Semi-Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
          id="path12787" />
       <path
          d="m 91.191177,149.57924 3.664329,-5.71498 h -1.566328 l -2.394053,4.1804 0.0022,-4.1804 h -1.566328 l 0.304365,5.71498 z"
-         style="font-weight:600;font-size:10.5833px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans Semi-Bold';fill:#000000;fill-opacity:1;stroke-width:0.264583"
+         style="font-weight:600;font-size:10.5833px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans Semi-Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
          id="path12789" />
       <path
          d="m 97.183829,143.86426 h -1.481661 l -1.69584,5.71498 h 1.481661 z m 0.59353,-2.00024 h -0.913118 a 0.76174648,0.76174648 0 0 0 -0.730275,0.54505 l -0.230811,0.77786 h 0.931366 a 0.73729709,0.73729709 0 0 0 0.706836,-0.52756 z"
-         style="font-weight:600;font-size:10.5833px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans Semi-Bold';fill:#000000;fill-opacity:1;stroke-width:0.264583"
+         style="font-weight:600;font-size:10.5833px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans Semi-Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
          id="path12791" />
       <path
          d="m 106.63459,143.86426 h -1.48166 l -1.69586,5.71498 h 1.48166 z m 0.59351,-2.00024 h -0.91312 a 0.76175035,0.76175035 0 0 0 -0.73027,0.54505 l -0.23082,0.77786 h 0.93137 a 0.73730083,0.73730083 0 0 0 0.70683,-0.52756 z"
-         style="font-weight:600;font-size:10.5833px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans Semi-Bold';display:inline;fill:#000000;fill-opacity:1;stroke-width:0.264583"
+         style="font-weight:600;font-size:10.5833px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans Semi-Bold';display:inline;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
          id="path12791-5" />
       <path
          d="m 98.612511,143.86426 -1.695788,5.71498 h 1.481658 l 1.017398,-3.42899 c 0.200898,-0.67733 0.809101,-1.12183 1.528771,-1.12183 0.635,0 0.84896,0.34925 0.64802,1.02658 l -1.04581,3.52424 h 1.48165 l 1.13683,-3.83115 c 0.37387,-1.25942 -0.11155,-1.97908 -1.32824,-1.97908 -0.77258,0 -1.37598,0.28575 -1.987656,0.92075 l 0.244766,-0.8255 z"
-         style="font-weight:600;font-size:10.5833px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans Semi-Bold';fill:#000000;fill-opacity:1;stroke-width:0.264583"
+         style="font-weight:600;font-size:10.5833px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans Semi-Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
          id="path12793" />
       <path
          d="m 110.60056,143.98068 h -0.8255 l 0.45546,-1.53458 h -0.76566 a 0.95938314,0.95938314 0 0 0 -0.91972,0.68641 l -0.25174,0.84817 h -0.73025 l -0.29216,0.98424 h 0.73025 l -1.04258,3.51366 c -0.2669,0.89958 0.0775,1.34408 1.05109,1.34408 0.32809,0 0.60202,-0.0317 0.89176,-0.11642 l 0.30782,-1.03716 c -0.15445,0.0212 -0.24235,0.0317 -0.34818,0.0317 -0.39159,0 -0.45216,-0.11642 -0.30154,-0.62442 l 0.92326,-3.11149 h 0.8255 z"
-         style="font-weight:600;font-size:10.5833px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans Semi-Bold';fill:#000000;fill-opacity:1;stroke-width:0.264583"
+         style="font-weight:600;font-size:10.5833px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans Semi-Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
          id="path12797" />
     </g>
+    <path
+       d="m 28.928538,153.51084 15.099733,-5.58906 v -3.73633 l -15.099733,-5.61994 v 3.42754 l 11.795701,4.04513 -9.815131,3.41731 a 2.950826,2.950826 125.40177 0 0 -1.98057,2.78675 z"
+       style="font-weight:bold;font-size:30.8788px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:FreeSans;fill:#ffffff;stroke-width:0.771968"
+       id="path14308"
+       inkscape:path-effect="#path-effect14329"
+       inkscape:original-d="m 28.928538,153.51084 15.099733,-5.58906 v -3.73633 l -15.099733,-5.61994 v 3.42754 l 11.795701,4.04513 -11.795701,4.10688 z" />
+    <path
+       d="m 13.801304,153.51084 15.099733,-5.58906 v -3.73633 l -15.099733,-5.61994 v 3.42754 l 11.795701,4.04513 -9.815131,3.41731 a 2.950826,2.950826 125.40177 0 0 -1.98057,2.78675 z"
+       style="font-weight:bold;font-size:30.8788px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:FreeSans;display:inline;fill:#ffffff;stroke-width:0.771968"
+       id="path14308-1"
+       inkscape:path-effect="#path-effect14329-9"
+       inkscape:original-d="m 13.801304,153.51084 15.099733,-5.58906 v -3.73633 l -15.099733,-5.61994 v 3.42754 l 11.795701,4.04513 -11.795701,4.10688 z" />
   </g>
 </svg>

@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="92.079643mm"
+   width="125.99627mm"
    height="21.754961mm"
-   viewBox="0 0 92.079644 21.754961"
+   viewBox="0 0 125.99627 21.754961"
    version="1.1"
    id="svg5"
    inkscape:version="1.1.2 (0a00cf5, 2022-02-04)"
@@ -27,9 +27,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="2.0500001"
-     inkscape:cx="133.41463"
-     inkscape:cy="63.414632"
+     inkscape:zoom="1.449569"
+     inkscape:cx="164.53167"
+     inkscape:cy="77.954207"
      inkscape:window-width="1920"
      inkscape:window-height="1045"
      inkscape:window-x="1920"
@@ -38,6 +38,23 @@
      inkscape:current-layer="layer1" />
   <defs
      id="defs2">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect14329"
+       is_visible="true"
+       lpeversion="1"
+       satellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,2.0971802,0,1"
+       unit="px"
+       method="auto"
+       mode="F"
+       radius="0"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
     <inkscape:path-effect
        effect="fillet_chamfer"
        id="path-effect15177"
@@ -106,12 +123,29 @@
        apply_with_radius="true"
        only_selected="false"
        hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect14329-9"
+       is_visible="true"
+       lpeversion="1"
+       satellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,2.0971802,0,1"
+       unit="px"
+       method="auto"
+       mode="F"
+       radius="0"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
   </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-47.717937,-134.96585)"
+     transform="translate(-13.801304,-134.96585)"
      style="display:inline">
     <g
        id="g15400"
@@ -147,5 +181,17 @@
          style="font-weight:600;font-size:10.5833px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans Semi-Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
          id="path12797" />
     </g>
+    <path
+       d="m 28.928538,153.51084 15.099733,-5.58906 v -3.73633 l -15.099733,-5.61994 v 3.42754 l 11.795701,4.04513 -9.815131,3.41731 a 2.950826,2.950826 125.40177 0 0 -1.98057,2.78675 z"
+       style="font-weight:bold;font-size:30.8788px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:FreeSans;fill:#ffffff;stroke-width:0.771968"
+       id="path14308"
+       inkscape:path-effect="#path-effect14329"
+       inkscape:original-d="m 28.928538,153.51084 15.099733,-5.58906 v -3.73633 l -15.099733,-5.61994 v 3.42754 l 11.795701,4.04513 -11.795701,4.10688 z" />
+    <path
+       d="m 13.801304,153.51084 15.099733,-5.58906 v -3.73633 l -15.099733,-5.61994 v 3.42754 l 11.795701,4.04513 -9.815131,3.41731 a 2.950826,2.950826 125.40177 0 0 -1.98057,2.78675 z"
+       style="font-weight:bold;font-size:30.8788px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:FreeSans;display:inline;fill:#ffffff;stroke-width:0.771968"
+       id="path14308-1"
+       inkscape:path-effect="#path-effect14329-9"
+       inkscape:original-d="m 13.801304,153.51084 15.099733,-5.58906 v -3.73633 l -15.099733,-5.61994 v 3.42754 l 11.795701,4.04513 -11.795701,4.10688 z" />
   </g>
 </svg>
