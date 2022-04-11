@@ -8,4 +8,9 @@ set(SRC "${CMAKE_CURRENT_LIST_DIR}/src")
 
 add_executable(${PROJECT_NAME}
 	"${SRC}/main.c"
+
+	"${SRC}/intl/dialogue.c"
+	"${SRC}/intl/dialogue.h"
+
+	"${SRC}/intl/info.h"
 )
