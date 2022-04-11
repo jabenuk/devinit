@@ -8,10 +8,10 @@
 // SOFTWARE.																	 //
 //-------------------------------------------------------------------------------//
 
-#include <stdio.h>
+#include <iostream>
 
 int main() {
-	printf("Hello world!\n");
+	std::cout << "Hello World!\n";
 
 	return 0;
 }
