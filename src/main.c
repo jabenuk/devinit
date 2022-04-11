@@ -87,15 +87,36 @@ int main(int argc, char *argv[]) {
 	
 	// extract the zip into the project folder
 	{
-		char _unzip_command[100] = "unzip .devinit.template.zip -d \"";
+		char _unzip_command[100] = "unzip -qq .devinit.template.zip -d \"";
 		strcat(_unzip_command, OUTPUT_DIR); 
 		strcat(_unzip_command, "\""); 
 
+		__vprintf(1, "  => Extracting template into '%s'...\n", OUTPUT_DIR);
 		system(_unzip_command);
 	}
 
 	// delete the zip archive
 	remove(".devinit.template.zip");
+
+	// ---
+	// some language templates have some extra work that needs to be done for the project directory.
+	// this work is done below.
+
+	if (!strcmp(PROJECT_LANGUAGE, "C")) {
+		chdir(OUTPUT_DIR);
+
+		// ---
+		// move the source code from the 'devinit-template_c' directory
+		//
+		__vprintf(1, "  => Organising project folder...\n", 0); // stupid macro needs a third argument so its just nul
+
+		char _mv_command[100] = "mv ";
+		strcat(_mv_command, "devinit-template_c/* ./");
+		system(_mv_command);
+
+		// delete the old 'devinit-template_c' folder
+		system("rm -rf devinit-template_c/");
+	}
 
 	return 0;
 }
