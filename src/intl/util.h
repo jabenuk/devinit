@@ -10,10 +10,14 @@
 // SOFTWARE.
 // -----------------------------------------------------------------------------
 
-#ifndef __DEVINIT_INFO_H__
-#define __DEVINIT_INFO_H__
+#ifndef __DEVINIT_UTIL_H__
+#define __DEVINIT_UTIL_H__
 
-#define VERSION "0.0.1"
-#define DESCRIPTION "a command suite for quickly initialising projects from templates hosted on GitHub."
+/**
+ * @brief Convert a given string to UPPERCASE.
+ * 
+ * @param lower the string to convert.
+ */
+void convupper(char *lower);
 
 #endif

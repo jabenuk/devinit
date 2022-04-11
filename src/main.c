@@ -14,33 +14,63 @@
 #include <getopt.h>
 
 #include "intl/dialogue.h"
+#include "intl/util.h"
 
-static struct option LONG_OPTIONS[] = {
+#define __vprintf(urgency, str, ...)\
+{\
+if (urgency > SUPPRESSLVL && SUPPRESSLVL < 2) printf(str, __VA_ARGS__);\
+}
+
+static const struct option LONG_OPTIONS[] = {
+	{ "pname",		required_argument,	0, 'p' },
+	{ "language",	required_argument,	0, 'l' },
+	{ "output",		required_argument,	0, 'o' },
+
+	{ "quiet",		no_argument,		0, 'q' },
+	{ "silent",		no_argument,		0, 'S' },
+
 	{ "help", 		no_argument,	 	0, 'h' },
-	{ "version", 	no_argument,	 	0, 'v' },
+	{ "version", 	no_argument,	 	0, 'V' },
 	{ 0, 			0, 					0,  0  }
 };
+
+char *PROJECT_NAME = "";
+char *PROJECT_LANGUAGE = "";
+static char *OUTPUT_DIR = "";
+static unsigned char SUPPRESSLVL = 0;		// 0: all output | 1: quiet output (-q) | 2: no output (-S)
+
+static char *INVOKE_EXEC = ""; 				// value of argv[0]
 
 /**
  * @brief parse command-line arguments via getopt
  * 
  * @param _argc argc
  * @param _argv argv
+ * 
+ * @return -1 if the program should halt. 0 if not.
  */
-void parseargs(int *_argc, char *_argv[]);
+int parseargs(int *_argc, char *_argv[]);
 
 /**
  * @brief main function
  * 
  */
 int main(int argc, char *argv[]) {
-	// parse arguments
-	parseargs(&argc, argv);
+	INVOKE_EXEC = argv[0];
 
-	// if there are no arguments then just print help dialogue
-	if (argc <= 1) {
-		prhelp();
+	// parse arguments
+	// end the program if necessary
+	switch (parseargs(&argc, argv)) {
+		case -1:
+			return 0;
+		case -2:
+			return 1;
+		default:
+			break;
 	}
+
+	// create project
+	__vprintf(2, "  => Creating %s project '%s'.\n", PROJECT_LANGUAGE, PROJECT_NAME);
 
 	return 0;
 }
@@ -50,23 +80,68 @@ int main(int argc, char *argv[]) {
  * 
  * @param _argc argc
  * @param _argv argv
+ * 
+ * @return -1 if the program should halt successfully, -2 if the program should halt with an error. 0 if the program can continue.
  */
-void parseargs(int *_argc, char *_argv[]) {
-	int c = 0;
-	int optind = 0;
+int parseargs(int *_argc, char *_argv[]) {
+	if (*_argc <= 1) {
+		prhelp();
+		return -1;
+	}
 
-	while ((c = getopt_long(*_argc, _argv, "h", LONG_OPTIONS, &optind)) != -1) {
+	int c;
+
+	while (1) {
+		int index = 0;
+		
+		c = getopt_long(*_argc, _argv, "p:l:o:qSh", LONG_OPTIONS, &index);
+		if (c == -1) {
+			break;
+		}
+
 		switch (c) {
-			case 'h':
+			case 'p':	// -p or --pname
+				PROJECT_NAME = optarg;
+				break;
+			case 'l':	// -l or --language
+				PROJECT_LANGUAGE = optarg;
+				convupper(optarg);
+				break;
+			case 'o':	// -o or --output
+				OUTPUT_DIR = optarg;
+				break;
+
+			case 'q': 	// -q or --quiet
+				SUPPRESSLVL = 1;
+				break;
+			case 'S': 	// -S or --silent
+				SUPPRESSLVL = 2;
+				break;
+
+			case 'h':	// -h or --help
 				prhelp();
-				break;
-			case 'v':
+				return -1;
+			case 'V':	// --version
 				prvers();
-				break;
+				return -1;
+
 			case '?':
-				break;
+				return -2;
 			default:
-				printf("devinit: getopt returned character code %o ??\n", c);
+				printf("devinit: ?? getopt_long returned character code %o ??\n", c);
+				return -2;
 		}
 	}
+		
+	if (PROJECT_NAME == "") {
+		printf("%s: no project name was passed\n", INVOKE_EXEC);
+		return -2;
+	}
+
+	if (PROJECT_LANGUAGE == "") {
+		printf("%s: no project language was passed\n", INVOKE_EXEC);
+		return -2;
+	}
+		
+	return 0;
 }

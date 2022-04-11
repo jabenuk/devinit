@@ -10,10 +10,18 @@
 // SOFTWARE.
 // -----------------------------------------------------------------------------
 
-#ifndef __DEVINIT_INFO_H__
-#define __DEVINIT_INFO_H__
+#include "util.h"
+#include <string.h>
 
-#define VERSION "0.0.1"
-#define DESCRIPTION "a command suite for quickly initialising projects from templates hosted on GitHub."
-
-#endif
+/**
+ * @brief Convert a given string to UPPERCASE.
+ * 
+ * @param lower the string to convert.
+ */
+void convupper(char *lower) {
+	for (unsigned int i = 0; i <= sizeof(lower) / sizeof(char *); i++) {
+		if (lower[i] >= 'a' && lower[i] <= 'z') {
+			lower[i] -= 32;
+		}
+	}
+}

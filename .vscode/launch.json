@@ -9,6 +9,8 @@
             "program": "${workspaceFolder}/build/devinit",
             "cwd": "${workspaceFolder}",
 
+            "args": [ "-p", "New Project", "-l", "c" ],
+
             "externalConsole": false,
 
             "setupCommands": [

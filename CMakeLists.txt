@@ -13,4 +13,7 @@ add_executable(${PROJECT_NAME}
 	"${SRC}/intl/dialogue.h"
 
 	"${SRC}/intl/info.h"
+
+	"${SRC}/intl/util.c"
+	"${SRC}/intl/util.h"
 )
