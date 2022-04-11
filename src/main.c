@@ -11,8 +11,11 @@
 // -----------------------------------------------------------------------------
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <getopt.h>
 #include <sys/stat.h>
+#include <unistd.h>
+#include <string.h>
 
 #include "intl/dialogue.h"
 #include "intl/util.h"
@@ -72,12 +75,27 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
+	// download the appropriate template as a ZIP from GitHub.
+	// unfortunately PROJECT_LANGUAGE is not integral; otherwise I would have used a switch-case statement.
+	if (!strcmp(PROJECT_LANGUAGE, "C")) {
+		system("wget https://github.com/jabenuk/devinit/archive/template_c.zip -O .devinit.template.zip 2>/dev/null");
+	}
+
 	// create project folder
 	__vprintf(2, "  => Creating %s project '%s'\n", PROJECT_LANGUAGE, PROJECT_NAME);
 	mkdir(OUTPUT_DIR, S_IRWXU);
+	
+	// extract the zip into the project folder
+	{
+		char _unzip_command[100] = "unzip .devinit.template.zip -d \"";
+		strcat(_unzip_command, OUTPUT_DIR); 
+		strcat(_unzip_command, "\""); 
 
-	// clone the template into the project folder.
-	// ...
+		system(_unzip_command);
+	}
+
+	// delete the zip archive
+	remove(".devinit.template.zip");
 
 	return 0;
 }
