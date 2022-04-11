@@ -1,0 +1,7 @@
+# build folder
+[Bb]uild/
+
+# .vscode files
+*.json
+!launch*
+!tasks*
