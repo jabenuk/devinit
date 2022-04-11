@@ -80,6 +80,9 @@ int main(int argc, char *argv[]) {
 	if (!strcmp(PROJECT_LANGUAGE, "C")) {
 		system("wget https://github.com/jabenuk/devinit/archive/template_c.zip -O .devinit.template.zip 2>/dev/null");
 	}
+	if (!strcmp(PROJECT_LANGUAGE, "CXX")) {
+		system("wget https://github.com/jabenuk/devinit/archive/template_cxx.zip -O .devinit.template.zip 2>/dev/null");
+	}
 
 	// create project folder
 	__vprintf(2, "  => Creating %s project '%s'\n", PROJECT_LANGUAGE, PROJECT_NAME);
@@ -102,6 +105,7 @@ int main(int argc, char *argv[]) {
 	// some language templates have some extra work that needs to be done for the project directory.
 	// this work is done below.
 
+	// some stuff for C projects
 	if (!strcmp(PROJECT_LANGUAGE, "C")) {
 		chdir(OUTPUT_DIR);
 
@@ -116,6 +120,23 @@ int main(int argc, char *argv[]) {
 
 		// delete the old 'devinit-template_c' folder
 		system("rm -rf devinit-template_c/");
+	}
+
+	// some stuff for C++ projects
+	if (!strcmp(PROJECT_LANGUAGE, "CXX")) {
+		chdir(OUTPUT_DIR);
+
+		// ---
+		// move the source code from the 'devinit-template_c' directory
+		//
+		__vprintf(1, "  => Organising project folder...\n", 0); // stupid macro needs a third argument so its just nul
+
+		char _mv_command[100] = "mv ";
+		strcat(_mv_command, "devinit-template_cxx/* ./");
+		system(_mv_command);
+
+		// delete the old 'devinit-template_c' folder
+		system("rm -rf devinit-template_cxx/");
 	}
 
 	return 0;

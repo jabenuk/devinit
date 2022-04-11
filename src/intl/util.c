@@ -20,7 +20,7 @@
  * @param lower the string to convert.
  */
 void convupper(char *lower) {
-	for (unsigned int i = 0; i <= sizeof(lower) / sizeof(char *); i++) {
+	for (unsigned int i = 0; lower[i] != '\0'; i++) {
 		if (lower[i] >= 'a' && lower[i] <= 'z') {
 			lower[i] -= 32;
 		}

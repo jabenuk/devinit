@@ -21,7 +21,7 @@
  * 
  */
 void prhelp() {
-	printf(	"devinit: %s\n"
+	printf(	"devinit: a command suite for quickly initialising projects from templates hosted on GitHub.\n"
 			"\n"
 			"Usage:\n"
 			"  devinit -p \"<project name>\" -l <language>\n"
@@ -31,13 +31,16 @@ void prhelp() {
 			"\n"
 			"Options:\n"
 			"  -p, --pname		Specify the project name (required). Use quotation marks if there are spaces!\n"
-			"  -l, --language	Specify the project language (required).\n"
+			"  -l, --language	Specify the project language (required).*\n"
 			"  -o, --output		Explictly specify an output directory other than the current working directory.\n"
 			"  -q, --quiet		Print less output.\n"
 			"  -S, --silent		Print no output.\n"
 			"  -h, --help		Show this help dialogue.\n"
-			"  --version		Give information about the command, such as version.\n",
-		DESCRIPTION
+			"  --version		Give information about the command, such as version.\n"
+			"\n"
+			"Suported languages for the (-l | --language) flag:\n"
+			"  - 'c': C projects\n"
+			"  - 'cxx': C++ projects\n"
 	);
 }
 

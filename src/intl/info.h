@@ -13,7 +13,6 @@
 #ifndef __DEVINIT_INFO_H__
 #define __DEVINIT_INFO_H__
 
-#define VERSION "0.0.1"
-#define DESCRIPTION "a command suite for quickly initialising projects from templates hosted on GitHub."
+#define VERSION "1.0.1"
 
 #endif
