@@ -20,4 +20,10 @@
  */
 void convupper(char *lower);
 
+/**
+ * @brief Check if a directory (at path) exists.
+ * 
+ */
+unsigned char direxists(const char *path);
+
 #endif

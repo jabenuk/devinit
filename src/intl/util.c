@@ -12,6 +12,7 @@
 
 #include "util.h"
 #include <string.h>
+#include <sys/stat.h>
 
 /**
  * @brief Convert a given string to UPPERCASE.
@@ -24,4 +25,19 @@ void convupper(char *lower) {
 			lower[i] -= 32;
 		}
 	}
+}
+
+/**
+ * @brief Check if a directory (at path) exists.
+ * 
+ */
+unsigned char direxists(const char *path) {
+	struct stat stats;
+
+	stat(path, &stats);
+
+	if (S_ISDIR(stats.st_mode)) {
+		return 1;
+	}
+	return 0;
 }

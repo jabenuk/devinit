@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include <getopt.h>
+#include <sys/stat.h>
 
 #include "intl/dialogue.h"
 #include "intl/util.h"
@@ -39,8 +40,6 @@ char *PROJECT_LANGUAGE = "";
 static char *OUTPUT_DIR = "";
 static unsigned char SUPPRESSLVL = 0;		// 0: all output | 1: quiet output (-q) | 2: no output (-S)
 
-static char *INVOKE_EXEC = ""; 				// value of argv[0]
-
 /**
  * @brief parse command-line arguments via getopt
  * 
@@ -56,8 +55,6 @@ int parseargs(int *_argc, char *_argv[]);
  * 
  */
 int main(int argc, char *argv[]) {
-	INVOKE_EXEC = argv[0];
-
 	// parse arguments
 	// end the program if necessary
 	switch (parseargs(&argc, argv)) {
@@ -69,8 +66,18 @@ int main(int argc, char *argv[]) {
 			break;
 	}
 
-	// create project
-	__vprintf(2, "  => Creating %s project '%s'.\n", PROJECT_LANGUAGE, PROJECT_NAME);
+	// assert that there is no existing folder by the name of OUTPUT_DIR.
+	if (direxists(OUTPUT_DIR)) {
+		printf("devinit: directory '%s' already exists.\n", OUTPUT_DIR);
+		return 1;
+	}
+
+	// create project folder
+	__vprintf(2, "  => Creating %s project '%s'\n", PROJECT_LANGUAGE, PROJECT_NAME);
+	mkdir(OUTPUT_DIR, S_IRWXU);
+
+	// clone the template into the project folder.
+	// ...
 
 	return 0;
 }
@@ -125,23 +132,30 @@ int parseargs(int *_argc, char *_argv[]) {
 				prvers();
 				return -1;
 
-			case '?':
+			case '?':	// invalid
 				return -2;
-			default:
+			default:	// getopt error
 				printf("devinit: ?? getopt_long returned character code %o ??\n", c);
 				return -2;
 		}
 	}
-		
+	
+	// (-p | --pname) is required!
 	if (PROJECT_NAME == "") {
-		printf("%s: no project name was passed\n", INVOKE_EXEC);
+		printf("devinit: no project name was passed\n");
 		return -2;
 	}
 
+	// (-l | --language) is required!
 	if (PROJECT_LANGUAGE == "") {
-		printf("%s: no project language was passed\n", INVOKE_EXEC);
+		printf("devinit: no project language was passed\n");
 		return -2;
 	}
-		
+
+	// if no output directory was used, make one with the name of the project
+	if (OUTPUT_DIR == "") {
+		OUTPUT_DIR = PROJECT_NAME;
+	}
+
 	return 0;
 }
