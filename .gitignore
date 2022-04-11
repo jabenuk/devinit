@@ -3,5 +3,4 @@
 
 # .vscode files
 *.json
-!launch*
-!tasks*
+**.vscode/
