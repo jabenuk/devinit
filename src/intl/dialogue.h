@@ -13,7 +13,7 @@
 #ifndef __DEVINIT_DIALOGUE_H__
 #define __DEVINIT_DIALOGUE_H__
 
-#define VERSION "1.0.2"
+#define VERSION "1.0.2.1"
 #define LAST_COMPILE "12/04/2022"
 
 /**

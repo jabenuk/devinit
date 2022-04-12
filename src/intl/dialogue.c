@@ -35,7 +35,7 @@ void prhelp() {
 			"  -S, --silent		Print no output.\n"
 			"  -h, --help		Show this help dialogue.\n"
 			"  --version		Give information about the command, such as version.\n"
-			"  --langs			Give information about available options for the --language flag.\n"
+			"  --langs		Give information about available options for the --language flag.\n"
 	);
 }
 
