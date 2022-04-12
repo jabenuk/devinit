@@ -29,4 +29,10 @@ void prhelp();
  */
 void prvers();
 
+/**
+ * @brief Print available langs
+ * 
+ */
+void prlangs();
+
 #endif

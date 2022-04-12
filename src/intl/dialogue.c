@@ -28,17 +28,14 @@ void prhelp() {
 			"  devinit -V | --version\n"
 			"\n"
 			"Options:\n"
-			"  -l, --language	Specify the project language (required).\n"
+			"  -l, --language	Specify the project language (required). Case insensitive.\n"
 			"  -o, --output		Explictly specify an output directory other than the current working directory.\n"
+			"  --override		Delete any previous directories of the same name as the output directory\n"
 			"  -q, --quiet		Print less output.\n"
 			"  -S, --silent		Print no output.\n"
 			"  -h, --help		Show this help dialogue.\n"
-			"  -V, --version		Give information about the command, such as version.\n"
-			"  --override		Delete any previous directories of the same name as the output directory\n"
-			"\n"
-			"Suported languages for the (-l | --language) flag:\n"
-			"  - 'c': C projects\n"
-			"  - 'cxx': C++ projects\n"
+			"  --version		Give information about the command, such as version.\n"
+			"  --langs			Give information about available options for the --language flag.\n"
 	);
 }
 
@@ -48,4 +45,15 @@ void prhelp() {
  */
 void prvers() {
 	printf("devinit version %s - last compiled %s\n", VERSION, LAST_COMPILE);
+}
+
+/**
+ * @brief Print available langs
+ * 
+ */
+void prlangs() {
+	printf(	"Devinit supports the following languages:\n"
+			"  - 'c': C projects\n"
+			"  - 'cxx': C++ projects\n"
+	);
 }

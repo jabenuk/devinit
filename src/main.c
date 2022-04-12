@@ -37,6 +37,7 @@ static const struct option LONG_OPTIONS[] = {
 
 	{ "help", 		no_argument,	 	0, 'h' },
 	{ "version", 	no_argument,	 	0, 'V' },
+	{ "langs", 		no_argument,	 	0, 'L' },
 	{ 0, 			0, 					0,  0  }
 };
 
@@ -84,7 +85,7 @@ int main(int argc, char *argv[]) {
 
 	// project language must be supported
 	if (!valinarray(PROJECT_LANGUAGE, SUPPORTED_LANGS, 2)) {
-		printf("devinit: language '%s' is not supported\n", PROJECT_LANGUAGE);
+		printf("devinit: language %s is not supported\n", PROJECT_LANGUAGE);
 		return 1;
 	}
 
@@ -220,7 +221,7 @@ int parseargs(int *_argc, char *_argv[]) {
 	while (1) {
 		int index = 0;
 		
-		c = getopt_long(*_argc, _argv, "l:o:qShV", LONG_OPTIONS, &index);
+		c = getopt_long(*_argc, _argv, "l:o:qShL", LONG_OPTIONS, &index);
 		if (c == -1) {
 			break;
 		}
@@ -249,6 +250,9 @@ int parseargs(int *_argc, char *_argv[]) {
 				return -1;
 			case 'V':	// --version
 				prvers();
+				return -1;
+			case 'L':	// --langs
+				prlangs();
 				return -1;
 
 			case '?':	// invalid
