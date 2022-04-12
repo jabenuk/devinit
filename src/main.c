@@ -29,21 +29,26 @@ static const struct option LONG_OPTIONS[] = {
 	{ "pname",		required_argument,	0, 'p' },
 	{ "language",	required_argument,	0, 'l' },
 	{ "output",		required_argument,	0, 'o' },
+	{ "ext-here",	no_argument,		0, 'e' },
 
 	{ "quiet",		no_argument,		0, 'q' },
 	{ "silent",		no_argument,		0, 'S' },
-	{ "force",		no_argument,		0, 'f' },
+	{ "override",	no_argument,		0, 'f' },
 
 	{ "help", 		no_argument,	 	0, 'h' },
 	{ "version", 	no_argument,	 	0, 'V' },
 	{ 0, 			0, 					0,  0  }
 };
 
-static char *PROJECT_NAME = "";
 static char *PROJECT_LANGUAGE = "";
 static char *OUTPUT_DIR = "";
 static unsigned char SUPPRESSLVL = 0;		// 0: all output | 1: quiet output (-q) | 2: no output (-S)
-static unsigned char FORCERM = 0;
+static unsigned char OVERRIDE = 0;
+
+static const char *SUPPORTED_LANGS[] = {
+	"C",
+	"CXX"
+};
 
 /**
  * @brief parse command-line arguments via getopt
@@ -71,20 +76,30 @@ int main(int argc, char *argv[]) {
 			break;
 	}
 
+	// (-l | --language) is required no matter what!
+	if (PROJECT_LANGUAGE == "") {
+		printf("devinit: no project language was passed\n");
+		return 1;
+	}
+
+	// project language must be supported
+	if (!valinarray(PROJECT_LANGUAGE, SUPPORTED_LANGS, 2)) {
+		printf("devinit: language '%s' is not supported\n", PROJECT_LANGUAGE);
+		return 1;
+	}
+
+	const unsigned char _outputdirexists = direxists(OUTPUT_DIR);
+
 	// assert that there is no existing folder by the name of OUTPUT_DIR.
-	if (direxists(OUTPUT_DIR)) {
+	if (_outputdirexists) {
 		char _rmcommand[100] = "rm -rf \"";
 		strcat(_rmcommand, OUTPUT_DIR);
 		strcat(_rmcommand, "\"");
 
-		// if force is not specified, prompt the user before deleting the directory
-		if (!FORCERM) {
-			// there is no need for this warning to be displayed if FORCERM is true.
-			printf("devinit: directory '%s' already exists.\n", OUTPUT_DIR);
-
+		// if OVERRIDE was specified, prompt the user to delete the directory
+		if (OVERRIDE) {
 			char inp[16];
-
-			printf("Delete directory '%s'? [y/n] ", OUTPUT_DIR);
+			printf("--override specified, delete existing directory '%s'? [y/n] ", OUTPUT_DIR);
 			scanf("%s", &inp);
 
 			convupper(inp);
@@ -104,16 +119,14 @@ int main(int argc, char *argv[]) {
 			printf("  => Deleting...\n");
 			system(_rmcommand);
 		}
-		// if --force is specified, do it automatically
-		else {
-			__vprintf(2, "  => --force specified, deleting directory '%s'...\n", OUTPUT_DIR);
-			system(_rmcommand);
-		}
+
 	}
 
-	// create project folder
-	__vprintf(2, "  => Creating %s project '%s'\n", PROJECT_LANGUAGE, PROJECT_NAME);
-	mkdir(OUTPUT_DIR, S_IRWXU);
+	// create project folder if applicable
+	if (OUTPUT_DIR != "" && !_outputdirexists) {
+		__vprintf(2, "  => Creating %s project '%s'\n", PROJECT_LANGUAGE, OUTPUT_DIR);
+		mkdir(OUTPUT_DIR, S_IRWXU);
+	}
 
 	// download the appropriate template as a ZIP from GitHub.
 	// unfortunately PROJECT_LANGUAGE is not integral; otherwise I would have used a switch-case statement.
@@ -127,12 +140,19 @@ int main(int argc, char *argv[]) {
 	}
 	
 	// extract the zip into the project folder
-	{
+	if (OUTPUT_DIR != "") {
 		char _unzip_command[100] = "unzip -qq .devinit.template.zip -d \"";
 		strcat(_unzip_command, OUTPUT_DIR); 
 		strcat(_unzip_command, "\""); 
 
 		__vprintf(1, "  => Extracting template into '%s'...\n", OUTPUT_DIR);
+		system(_unzip_command);
+	}
+	// ..or the current working directory if no output directory was given
+	else {
+		const char _unzip_command[100] = "unzip -qq .devinit.template.zip -d .";
+
+		__vprintf(1, "  => Extracting template into current working directory...\n", 0);
 		system(_unzip_command);
 	}
 
@@ -200,15 +220,12 @@ int parseargs(int *_argc, char *_argv[]) {
 	while (1) {
 		int index = 0;
 		
-		c = getopt_long(*_argc, _argv, "p:l:o:qShV", LONG_OPTIONS, &index);
+		c = getopt_long(*_argc, _argv, "l:o:qShV", LONG_OPTIONS, &index);
 		if (c == -1) {
 			break;
 		}
 
 		switch (c) {
-			case 'p':	// -p or --pname
-				PROJECT_NAME = optarg;
-				break;
 			case 'l':	// -l or --language
 				PROJECT_LANGUAGE = optarg;
 				convupper(optarg);
@@ -223,8 +240,8 @@ int parseargs(int *_argc, char *_argv[]) {
 			case 'S': 	// -S or --silent
 				SUPPRESSLVL = 2;
 				break;
-			case 'f':	// -f or --force
-				FORCERM = 1;
+			case 'f':	// --override
+				OVERRIDE = 1;
 				break;
 
 			case 'h':	// -h or --help
@@ -240,23 +257,6 @@ int parseargs(int *_argc, char *_argv[]) {
 				printf("devinit: ?? getopt_long returned character code %o ??\n", c);
 				return -2;
 		}
-	}
-	
-	// (-p | --pname) is required!
-	if (PROJECT_NAME == "") {
-		printf("devinit: no project name was passed\n");
-		return -2;
-	}
-
-	// (-l | --language) is required!
-	if (PROJECT_LANGUAGE == "") {
-		printf("devinit: no project language was passed\n");
-		return -2;
-	}
-
-	// if no output directory was used, make one with the name of the project
-	if (OUTPUT_DIR == "") {
-		OUTPUT_DIR = PROJECT_NAME;
 	}
 
 	return 0;

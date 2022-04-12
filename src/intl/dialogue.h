@@ -13,6 +13,9 @@
 #ifndef __DEVINIT_DIALOGUE_H__
 #define __DEVINIT_DIALOGUE_H__
 
+#define VERSION "1.0.2"
+#define LAST_COMPILE "12/04/2022"
+
 /**
  * @brief Print a help dialogue based on the docopt standard
  * @sa http://docopt.org/

@@ -26,4 +26,10 @@ void convupper(char *lower);
  */
 unsigned char direxists(const char *path);
 
+/**
+ * @brief Check if string val is in an array of strings.
+ * 
+ */
+unsigned char valinarray(const char *val, const char *arr[], unsigned int arrsize);
+
 #endif

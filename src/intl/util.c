@@ -41,3 +41,16 @@ unsigned char direxists(const char *path) {
 	}
 	return 0;
 }
+
+/**
+ * @brief Check if string val is in an array of strings.
+ * 
+ */
+unsigned char valinarray(const char *val, const char *arr[], unsigned int arrsize) {
+	for (unsigned int i = 0; i < arrsize; i++) {
+		if (!strcmp(arr[i], val)) {
+			return 1;
+		}
+	}
+	return 0;
+}

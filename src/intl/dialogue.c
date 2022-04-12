@@ -13,8 +13,6 @@
 #include "dialogue.h"
 #include <stdio.h>
 
-#include "info.h"
-
 /**
  * @brief Print a help dialogue based on the docopt standard
  * @sa http://docopt.org/
@@ -30,14 +28,13 @@ void prhelp() {
 			"  devinit -V | --version\n"
 			"\n"
 			"Options:\n"
-			"  -p, --pname		Specify the project name (required). Use quotation marks if there are spaces!\n"
-			"  -l, --language	Specify the project language (required).*\n"
+			"  -l, --language	Specify the project language (required).\n"
 			"  -o, --output		Explictly specify an output directory other than the current working directory.\n"
 			"  -q, --quiet		Print less output.\n"
 			"  -S, --silent		Print no output.\n"
 			"  -h, --help		Show this help dialogue.\n"
 			"  -V, --version		Give information about the command, such as version.\n"
-			"  --force		Delete any previous directories of the same name as the project WITHOUT prompts!\n"
+			"  --override		Delete any previous directories of the same name as the output directory\n"
 			"\n"
 			"Suported languages for the (-l | --language) flag:\n"
 			"  - 'c': C projects\n"
@@ -50,5 +47,5 @@ void prhelp() {
  * 
  */
 void prvers() {
-	printf("devinit version %s\n", VERSION);
+	printf("devinit version %s - last compiled %s\n", VERSION, LAST_COMPILE);
 }
