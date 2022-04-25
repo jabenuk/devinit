@@ -1,6 +1,0 @@
-# build folder
-[Bb]uild/
-
-# .vscode files
-*.json
-**.vscode/
