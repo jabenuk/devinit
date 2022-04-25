@@ -48,7 +48,8 @@ static unsigned char OVERRIDE = 0;
 
 static const char *SUPPORTED_LANGS[] = {
 	"C",
-	"CXX"
+	"CXX",
+	"CSHARP"
 };
 
 /**
@@ -84,7 +85,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	// project language must be supported
-	if (!valinarray(PROJECT_LANGUAGE, SUPPORTED_LANGS, 2)) {
+	if (!valinarray(PROJECT_LANGUAGE, SUPPORTED_LANGS, 3)) {
 		printf("devinit: language %s is not supported\n", PROJECT_LANGUAGE);
 		return 1;
 	}
@@ -133,11 +134,20 @@ int main(int argc, char *argv[]) {
 	// unfortunately PROJECT_LANGUAGE is not integral; otherwise I would have used a switch-case statement.
 	__vprintf(2, "  => Downloading project template from GitHub...\n", 0);
 
+	char foldername[30];
+	memset(foldername, 0, 30);
+
 	if (!strcmp(PROJECT_LANGUAGE, "C")) {
 		system("wget https://github.com/jabenuk/devinit/archive/template_c.zip -O .devinit.template.zip 2>/dev/null");
+		strncpy(foldername, "devinit-template_c", 30);
 	}
 	if (!strcmp(PROJECT_LANGUAGE, "CXX")) {
 		system("wget https://github.com/jabenuk/devinit/archive/template_cxx.zip -O .devinit.template.zip 2>/dev/null");
+		strncpy(foldername, "devinit-template_cxx", 30);
+	}
+	if (!strcmp(PROJECT_LANGUAGE, "CSHARP")) {
+		system("wget https://github.com/jabenuk/devinit/archive/template_csharp.zip -O .devinit.template.zip 2>/dev/null");
+		strncpy(foldername, "devinit-template_csharp", 30);
 	}
 	
 	// extract the zip into the project folder
@@ -161,42 +171,22 @@ int main(int argc, char *argv[]) {
 	remove(".devinit.template.zip");
 
 	// ---
-	// some language templates have some extra work that needs to be done for the project directory.
-	// this work is done below.
+	// move the source code from the 'devinit-template_XXX' directory
+	//
 
-	// some stuff for C projects
-	if (!strcmp(PROJECT_LANGUAGE, "C")) {
-		chdir(OUTPUT_DIR);
+	chdir(OUTPUT_DIR);
 
-		// ---
-		// move the source code from the 'devinit-template_c' directory
-		//
-		__vprintf(1, "  => Organising project folder...\n", 0); // stupid macro needs a third argument so its just nul
+	__vprintf(1, "  => Organising project folder...\n", 0); // stupid macro needs a third argument so its just nul
 
-		char _mv_command[100] = "mv ";
-		strcat(_mv_command, "devinit-template_c/* ./");
-		system(_mv_command);
+	char _mv_command[100] = "mv ";
+	strcat(_mv_command, foldername);
+	strcat(_mv_command, "/* ./");
+	system(_mv_command);
 
-		// delete the old 'devinit-template_c' folder
-		system("rm -rf devinit-template_c/");
-	}
-
-	// some stuff for C++ projects
-	if (!strcmp(PROJECT_LANGUAGE, "CXX")) {
-		chdir(OUTPUT_DIR);
-
-		// ---
-		// move the source code from the 'devinit-template_c' directory
-		//
-		__vprintf(1, "  => Organising project folder...\n", 0); // stupid macro needs a third argument so its just nul
-
-		char _mv_command[100] = "mv ";
-		strcat(_mv_command, "devinit-template_cxx/* ./");
-		system(_mv_command);
-
-		// delete the old 'devinit-template_c' folder
-		system("rm -rf devinit-template_cxx/");
-	}
+	// delete the old 'devinit-template_c' folder
+	char _rm_command[75] = "rm -rf ";
+	strcat(_rm_command, foldername);
+	system(_rm_command);
 
 	__vprintf(2, "  => Done!\n", 0);
 	return 0;

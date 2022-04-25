@@ -22,8 +22,8 @@ void prhelp() {
 	printf(	"devinit: a command suite for quickly initialising projects from templates hosted on GitHub.\n"
 			"\n"
 			"Usage:\n"
-			"  devinit -p \"<project name>\" -l <language>\n"
-			"  devinit -p \"<project name>\" -l <language> -o <output dir>\n"
+			"  devinit -l <language>\n"
+			"  devinit -l <language> -o <output dir>\n"
 			"  devinit -h | --help\n"
 			"  devinit -V | --version\n"
 			"\n"
@@ -44,7 +44,7 @@ void prhelp() {
  * 
  */
 void prvers() {
-	printf("devinit version %s - last compiled %s\n", VERSION, LAST_COMPILE);
+	printf("devinit version %s - last updated %s\n", VERSION, LAST_UPDATE);
 }
 
 /**
@@ -55,5 +55,6 @@ void prlangs() {
 	printf(	"Devinit supports the following languages:\n"
 			"  - 'c': C projects\n"
 			"  - 'cxx': C++ projects\n"
+			"  - 'csharp': C# (.NET) projects\n"
 	);
 }
